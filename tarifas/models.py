@@ -14,5 +14,8 @@ class Tarifa(models.Model):
     monto = models.DecimalField(max_digits=10, decimal_places=2)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        db_table = 'tarifas'
+
     def __str__(self):
         return f"{self.tipo} - {self.vehiculo_tipo} - ${self.monto}"

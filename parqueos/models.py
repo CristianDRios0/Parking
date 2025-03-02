@@ -16,5 +16,8 @@ class Parqueo(models.Model):
     estado = models.CharField(max_length=10, choices=ESTADO_PARQUEO, default='Activo')
     total_pagado = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 
+    class Meta:
+        db_table = 'parqueos'
+
     def __str__(self):
         return f"Parqueo {self.id} - {self.vehiculo.placa} - {self.estado}"

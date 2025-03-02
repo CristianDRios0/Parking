@@ -7,5 +7,8 @@ class Pago(models.Model):
     parqueo = models.ForeignKey(Parqueo, on_delete=models.CASCADE, null=True, blank=True)
     monto = models.DecimalField(max_digits=10, decimal_places=2)
 
+    class Meta:
+        db_table = 'pagos'
+
     def __str__(self):
         return f"Pago {self.id} - ${self.monto}"
