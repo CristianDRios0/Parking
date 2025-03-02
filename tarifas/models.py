@@ -1,0 +1,18 @@
+from django.db import models
+
+class Tarifa(models.Model):
+    TIPO_TARIFA = [
+        ('Hora', 'Por Hora'),
+        ('Mes', 'mes'),
+    ]
+    TIPO_VEHICULO = [
+        ('Automovil', 'automovil'),
+        ('Moto', 'moto'),
+    ]
+    tipo = models.CharField(max_length=10, choices=TIPO_TARIFA)
+    vehiculo_tipo = models.CharField(max_length=10, choices=TIPO_VEHICULO)
+    monto = models.DecimalField(max_digits=10, decimal_places=2)
+    fecha_actualizacion = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.tipo} - {self.vehiculo_tipo} - ${self.monto}"

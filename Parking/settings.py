@@ -38,6 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'clientes',
+    'vehiculos',
+    'celdas',
+    'tarifas',
+    'parqueos',
+    'pagos',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +81,12 @@ WSGI_APPLICATION = 'Parking.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sistema_aparcamiento',
+        'USER': 'root',
+        'PASSWORD': 'P4ssw0rd!',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
