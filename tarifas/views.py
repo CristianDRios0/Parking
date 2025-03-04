@@ -8,7 +8,13 @@ from .serializers import TarifaSerializer
 class TarifaListCreateAPIView(APIView):
 
     def get(self, request):
+        tipo = request.GET.get("tipo")
+        vehiculo_tipo = request.GET.get("vehiculo_tipo")
         tarifas = Tarifa.objects.all()
+        if tipo:
+            tarifas = tarifas.filter(tipo=tipo)
+        if vehiculo_tipo:
+            tarifas = tarifas.filter(vehiculo_tipo=vehiculo_tipo)
         serializer = TarifaSerializer(tarifas, many=True)
         return Response(serializer.data)
 
