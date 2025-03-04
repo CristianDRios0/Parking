@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 
 class Cliente(models.Model):
     TIPO_PLAN = [
-        ('Mensual', 'mensual'),
-        ('Ocasional', 'ocasional'),
+        ('mensual', 'Mensual'),
+        ('ocasional', 'Ocasional'),
     ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     tipo_plan = models.CharField(max_length=10, choices=TIPO_PLAN)
