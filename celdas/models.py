@@ -6,13 +6,13 @@ class Celda(models.Model):
         ('Moto', 'moto'),
     ]
     ESTADO_CELDA = [
-        ('Libre', 'libre'),
-        ('Ocupado', 'ocupado'),
-        ('Reservado', 'reservado'),
+        ('libre', 'Libre'),
+        ('ocupado', 'Ocupado'),
+        ('reservado', 'Reservado'),
     ]
     codigo = models.CharField(max_length=10, unique=True)
     tipo = models.CharField(max_length=10, choices=TIPO_VEHICULO)
-    estado = models.CharField(max_length=10, choices=ESTADO_CELDA, default='Libre')
+    estado = models.CharField(max_length=10, choices=ESTADO_CELDA, default='libre')
 
     class Meta:
         db_table = 'celdas'

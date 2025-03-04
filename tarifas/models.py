@@ -2,12 +2,12 @@ from django.db import models
 
 class Tarifa(models.Model):
     TIPO_TARIFA = [
-        ('Hora', 'Por Hora'),
-        ('Mes', 'mes'),
+        ('hora', 'Hora'),
+        ('mensual', 'Mensual'),
     ]
     TIPO_VEHICULO = [
-        ('Automovil', 'automovil'),
-        ('Moto', 'moto'),
+        ('automovil', 'Automovil'),
+        ('moto', 'Moto'),
     ]
     tipo = models.CharField(max_length=10, choices=TIPO_TARIFA)
     vehiculo_tipo = models.CharField(max_length=10, choices=TIPO_VEHICULO)
