@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'tarifas',
     'parqueos',
     'pagos',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
