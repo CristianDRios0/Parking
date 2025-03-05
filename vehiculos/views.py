@@ -21,20 +21,20 @@ class VehiculoListCreateAPIView(APIView):
     
 class VehiculoDetailAPIView(APIView):
     
-    def get(self, request, pk):
-        vehiculo = get_object_or_404(Vehiculo, pk=pk)
+    def get(self, request, placa):
+        vehiculo = get_object_or_404(Vehiculo, placa=placa)
         serializer = VehiculoSerializer(vehiculo)
         return Response(serializer.data)
 
-    def put(self, request, pk):
-        vehiculo = get_object_or_404(Vehiculo, pk=pk)
+    def put(self, request, placa):
+        vehiculo = get_object_or_404(Vehiculo, placa=placa)
         serializer = VehiculoSerializer(vehiculo, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk):
-        vehiculo = get_object_or_404(Vehiculo, pk=pk)
+    def delete(self, request, placa):
+        vehiculo = get_object_or_404(Vehiculo, placa=placa)
         vehiculo.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
