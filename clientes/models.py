@@ -16,4 +16,4 @@ class Cliente(models.Model):
         db_table = 'clientes'
 
     def __str__(self):
-        return f"{self.user.username} - {self.tipo_plan}"
+        return f"{self.nombre} - {self.tipo_plan}"

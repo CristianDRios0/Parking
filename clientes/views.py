@@ -26,15 +26,15 @@ class ClienteDetailAPIView(APIView):
         serializer = ClienteSerializer(cliente)
         return Response(serializer.data)
     
-    def put(self, request, pk):
-        cliente = get_object_or_404(Cliente, pk=pk)
+    def put(self, request, identificacion):
+        cliente = get_object_or_404(Cliente, identificacion=identificacion)
         serializer = ClienteSerializer(cliente, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    def delete(self, request, pk):
-        cliente = get_object_or_404(Cliente, pk=pk)
+    def delete(self, request, identificacion):
+        cliente = get_object_or_404(Cliente, identificacion=identificacion)
         cliente.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
