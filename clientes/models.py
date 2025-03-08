@@ -6,7 +6,8 @@ class Cliente(models.Model):
         ('mensual', 'Mensual'),
         ('ocasional', 'Ocasional'),
     ]
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=255)
+    identificacion = models.CharField(max_length=20, unique=True)
     tipo_plan = models.CharField(max_length=10, choices=TIPO_PLAN)
     fecha_inicio = models.DateField(null=True, blank=True)
     fecha_fin = models.DateField(null=True, blank=True)

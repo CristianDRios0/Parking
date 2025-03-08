@@ -21,8 +21,8 @@ class ClienteListCreateAPIView(APIView):
     
 class ClienteDetailAPIView(APIView):
     
-    def get(self, request, pk):
-        cliente = get_object_or_404(Cliente, pk=pk)
+    def get(self, request, identificacion):
+        cliente = get_object_or_404(Cliente, identificacion=identificacion)
         serializer = ClienteSerializer(cliente)
         return Response(serializer.data)
     
