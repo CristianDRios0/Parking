@@ -22,8 +22,10 @@ def redirect_to_admin(request):
     return redirect('/admin/')
 
 urlpatterns = [
-    path('', redirect_to_admin),
+    #path('', redirect_to_admin),
+    path('', include('login.urls')),
     path('admin/', admin.site.urls),
+    path('login/', include('login.urls')),
     path('api/', include('celdas.urls')),
     path('api/', include('clientes.urls')),
     path('api/', include('tarifas.urls')),

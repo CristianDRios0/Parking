@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url(../images/1.parking-1200x600.jpg) no-repeat center center/ cover;
+}
+
+.container_login{
+    width: 20%;
+    height: 25%;
+    min-height: max-content;
+    min-width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+
+}
+
+.center{
+    text-align: center;
+}
+    
+.titulo{
+    margin: 15px;
+}
+
+.fuente_textos_titulos{
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 40px;
+}
+
+.fuente_textos{
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 20px;
+}
+
+form input{
+    height: 20px;
+    width: 70%;
+    border-radius: 40px;
+    padding: 5px;
+    margin: 0px 5px;
+    text-align: center;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.boton_login{
+    margin-bottom: 10px;
+    width: 90px;
+    height: 40px;
+    border-radius: 20px;
+    background: linear-gradient(to right, #ff00ff, #9900ff);
+    color: white;
+}
