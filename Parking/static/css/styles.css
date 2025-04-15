@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-body{
+.login{
     width: 100%;
     height: 100vh;
     display: flex;
@@ -63,4 +63,201 @@ form input{
     border-radius: 20px;
     background: linear-gradient(to right, #ff00ff, #9900ff);
     color: white;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html{
+    height: 100vh;
+    width: 100vw;
+}
+
+.page-layout{
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar{
+    width: 10vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    height: 100%;
+}
+
+header{
+    background-color: rgb(33,37,60);
+    width: 100%;
+    height: 8%;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    text-align: center;
+}
+nav{
+    background-color: rgb(46, 64, 83);
+    flex: 1;
+    width: 100%;
+    box-shadow: 2px 0px 10px rgba(255, 255, 255, 0.4);
+    z-index: 1;
+}
+main{
+    width: 100%;
+    height: 86vh;
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    background-color: rgb(52, 73, 94);
+}
+
+footer{
+    background-color: black;
+    width: 100%;
+    height: 5vh;
+    text-align: center;
+    color: white;
+}
+
+ul{
+    padding-left: 10px;
+}
+
+li {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    list-style: none;
+}
+
+/* Estilo base para ítems del nav */
+nav ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li span{
+    color: rgb(51, 187, 255);
+}
+
+nav ul li:hover {
+    background-color: rgba(174, 182, 191, 0.3);
+    cursor: pointer;
+}
+nav i {
+    font-size: 1.5rem;
+    color: rgb(51, 187, 255);
+}
+
+/* Texto del link con transición para suavidad */
+.link-text {
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity 0.3s ease, width 0.3s ease;
+}
+
+/* Responsive y animación de sidebar colapsable */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+        transition: width 0.3s ease;
+        overflow: hidden;
+    }
+
+    .content {
+        width: calc(100vw - 60px);
+        transition: width 0.3s ease;
+    }
+
+    /* Oculta texto */
+    .sidebar .link-text {
+        opacity: 0;
+        width: 0;
+    }
+
+    /* Sidebar expandida al pasar el mouse */
+    .sidebar:hover {
+        width: 200px;
+    }
+
+    .sidebar:hover + .content {
+        width: calc(100vw - 200px);
+    }
+
+    .sidebar:hover .link-text {
+        opacity: 1;
+        width: auto;
+    }
+
+    /* Mejora visual del ícono centrado cuando está colapsado */
+    nav ul li {
+        justify-content: center;
+    }
+    .sidebar:hover nav ul li {
+        justify-content: flex-start;
+    }
+}
+
+/*Para la vista de las celdas*/
+
+.celdas_content{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 10px;
+    padding: 20px;
+    background-color: rgb(33, 47, 60);
+}
+
+.cell {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+}
+
+.cell:hover {
+    transform: scale(1.05);
+}
+
+.libre {
+    background-color: #4CAF50;
+}
+
+.ocupado {
+    background-color: #F44336;
+}
+
+.reservado {
+    background-color: #FF9800;
+}
+
+.logo{
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.title{
+    background-color: rgb(33, 47, 60);
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 30px;
+    color: rgb(51, 187, 255);
 }

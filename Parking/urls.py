@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('login.urls')),
     path('admin/', admin.site.urls),
     path('login/', include('login.urls')),
+    path('celdas/', include('celdas.urls')),
     path('api/', include('celdas.urls')),
     path('api/', include('clientes.urls')),
     path('api/', include('tarifas.urls')),

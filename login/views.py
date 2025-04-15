@@ -10,7 +10,7 @@ def custom_login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('/admin/')  # o a otra vista que definas como dashboard
+            return redirect('celdas_view') 
         else:
             messages.error(request, 'Usuario o contraseña incorrectos.')
 

@@ -5,19 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Parking System{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <script defer src="{% static 'js/main.js' %}"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <h1>Parking System</h1>
-    </header>
-    <main>
-        {% block content %}
-        {% endblock %}
-    </main>
-    <footer>
-        <p>© 2025 - Todos los derechos reservados</p>
-    </footer>
+    <div class="page-layout">
+        <div class="sidebar">
+            <header>
+                <img class="logo" src="/static/images/logo2.png" alt="Logo">
+            </header>
+            <nav>
+                <ul>
+                    <li title="Home"><i class="bi bi-people-fill"></i><span class="link-text">Home</span></li>
+                    <li title="About"><i class="bi bi-plus-square-fill"></i><span class="link-text">About</span></li>
+                    <li title="Services"><i class="bi bi-info-circle-fill"></i><span class="link-text">Services</span></li>
+                    <li title="Contact"><i class="bi bi-telephone-fill"></i><span class="link-text">Contact</span></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content">
+            <main>
+                {% block content %}
+                {% endblock %}
+            </main>
+            <footer>
+                <p>© 2025 - Todos los derechos reservados</p>
+            </footer>
+        </div>
+    </div>
 </body>
 </html>
