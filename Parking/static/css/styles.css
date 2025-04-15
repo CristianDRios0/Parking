@@ -306,3 +306,12 @@ label {
     color: rgb(51, 187, 255); 
     font-family: "Josefin Sans", sans-serif;
 }
+
+.label_login {
+    color: black;
+}
+
+.texto_detalle {
+    color: rgb(51, 187, 255);
+    font-family: "Josefin Sans", sans-serif;
+}

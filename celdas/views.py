@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.shortcuts import render, redirect, get_object_or_404
 from celdas.forms import CeldaForm
+from parqueos.models import Parqueo
 from .models import Celda
 from .serializers import CeldaSerializer
 from django.contrib.auth.decorators import login_required
@@ -75,3 +76,14 @@ def crear_celda_view(request):
         form = CeldaForm()
 
     return redirect('celdas_view')
+
+@login_required
+def detalle_celda(request, celda_id):
+    celda = get_object_or_404(Celda, pk=celda_id)
+    parqueo = Parqueo.objects.filter(celda=celda, estado='activo').select_related('vehiculo').first()
+
+    return render(request, 'celdas/detalle_celda.html', {
+        'celda': celda,
+        'parqueo': parqueo,
+        'vehiculo': parqueo.vehiculo if parqueo else None
+    })
