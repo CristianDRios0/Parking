@@ -1,7 +1,11 @@
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.contrib.auth.decorators import login_required
+from celdas.models import Celda
+from parqueos.forms import ParqueoForm
 from .models import Parqueo
 from .serializers import ParqueoSerializer
 
@@ -38,3 +42,28 @@ class ParqueoDetailAPIView(APIView):
         parqueo = get_object_or_404(Parqueo, vehiculo__placa=placa)
         parqueo.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@login_required
+def formulario_parqueo(request, celda_id):
+    celda = get_object_or_404(Celda, id=celda_id)
+    form = ParqueoForm()
+    return render(request, 'parqueos/formulario_parqueo.html', {'form': form, 'celda': celda})
+
+@login_required
+def crear_parqueo(request, celda_id):
+    celda = get_object_or_404(Celda, id=celda_id)
+
+    if request.method == 'POST':
+        form = ParqueoForm(request.POST)
+        if form.is_valid():
+            parqueo = form.save(commit=False)
+            parqueo.celda = celda
+            parqueo.estado = 'activo'
+            parqueo.save()
+
+            celda.estado = 'ocupado'
+            celda.save()
+
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'errors': form.errors})

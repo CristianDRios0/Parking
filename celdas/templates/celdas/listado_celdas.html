@@ -12,7 +12,7 @@
 </div>
 <div class="celdas_content">
     {% for celda in celdas %}
-        <div class="cell {{ celda.estado|lower }}" {% if celda.estado == "ocupado" %} data-id="{{ celda.id }}"{% endif %}>{{ celda.codigo }}</div>
+        <div class="cell {{ celda.estado|lower }}" data-id="{{ celda.id }}">{{ celda.codigo }}</div>
     {% endfor %}
 </div>   
 
@@ -34,6 +34,20 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" id="detalleCeldaContent">
 
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="crearParqueoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="crearParqueoModalContent">
+        <div class="modal-header">
+            <h5 class="modal-title">Parquear</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="formularioParqueoBody">
+            
+        </div>
         </div>
     </div>
 </div>

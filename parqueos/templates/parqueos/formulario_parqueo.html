@@ -1,0 +1,8 @@
+<form id="crearParqueoForm">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Parquear</button>
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+    </div>
+</form>
