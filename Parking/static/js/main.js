@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+/*document.addEventListener("DOMContentLoaded", function () {
     const btnAbrirModal = document.getElementById("btnAbrirModalCelda");  // El botón debe tener este ID
     const modalBody = document.getElementById("modal-body-content");
 
@@ -23,4 +23,4 @@ document.addEventListener("DOMContentLoaded", function () {
           modalBody.innerHTML = "<p class='text-danger'>No se pudo cargar el formulario.</p>";
         });
     });
-  });
+  });*/

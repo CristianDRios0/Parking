@@ -261,3 +261,48 @@ nav i {
     font-size: 30px;
     color: rgb(51, 187, 255);
 }
+
+.crud_panel {
+    margin: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-content {
+    background-color: rgb(52, 73, 94);
+}
+
+.modal-title {
+    color: rgb(51, 187, 255);
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 30px;
+    align-items: center;
+}
+
+.btn-close {
+    filter: invert(1);
+}
+
+.form-control {
+    background-color: rgb(133, 146, 158);
+    color: rgb(51, 187, 255);
+    border: 1px solid rgb(51, 187, 255);
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.form-control::placeholder {
+    color: rgba(51, 187, 255, 0.7);
+}
+
+.form-control:focus {
+    background-color: rgb(108, 122, 137);
+    border-color: rgb(0, 230, 255);
+    box-shadow: 0 0 5px rgba(0, 230, 255, 0.5);
+    outline: none;
+    color: rgb(0, 230, 255);
+}
+
+label {
+    color: rgb(51, 187, 255); 
+    font-family: "Josefin Sans", sans-serif;
+}

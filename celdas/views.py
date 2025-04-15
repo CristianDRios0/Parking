@@ -59,9 +59,12 @@ def celdas_view(request):
         celdas = Celda.objects.filter(estado=estado)
     else:
         celdas = Celda.objects.all()
-    return render(request, 'celdas/listado_celdas.html', {'celdas': celdas})
 
-#@login_required   
+    form = CeldaForm()
+
+    return render(request, 'celdas/listado_celdas.html', {'celdas': celdas, 'form': form})
+
+@login_required   
 def crear_celda_view(request):
     if request.method == 'POST':
         form = CeldaForm(request.POST)
@@ -71,4 +74,4 @@ def crear_celda_view(request):
     else:
         form = CeldaForm()
 
-    return render(request, 'celdas/formulario_celda.html', {'form': form})
+    return redirect('celdas_view')

@@ -8,4 +8,5 @@ class CeldaForm(forms.ModelForm):
         widgets = {
             'codigo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese el codigo para la nueva celda'}),
             'tipo': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Seleccione un tipo de celda'}),
+            'estado': forms.Select(attrs={'class': 'form-control'})
         }

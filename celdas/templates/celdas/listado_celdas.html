@@ -4,8 +4,9 @@
 <div class="title">
     <h2>SISTEMA PARQUEADERO</h2>
 </div>
-<div>
-    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCrearCelda" id="btnAbrirModalCelda">
+<div class="crud_panel">
+    <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalCrearCelda" id="btnAbrirModalCelda">
+        <i class="bi bi-plus-lg"></i>
         Crear Celda
     </button>
 </div>
@@ -16,11 +17,11 @@
 </div>   
 
 <div class="modal fade" id="modalCrearCelda" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Crear Nueva Celda</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <h5 class="modal-title">Crear nueva celda</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="modal-body-content">
                 {% include 'celdas/formulario_celda.html' %}
