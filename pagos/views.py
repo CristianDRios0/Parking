@@ -1,9 +1,16 @@
+from django.utils import timezone
+import math
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+
+from parqueos.models import Parqueo
 from .models import Pago
 from .serializers import PagoSerializer
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 class PagoListCreateAPIView(APIView):
     
@@ -41,3 +48,32 @@ class PagoDetailAPIView(APIView):
         pago = get_object_or_404(Pago, pk=pk)
         pago.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@require_POST
+def crear_pago(request, parqueo_id):
+    parqueo = get_object_or_404(Parqueo, id=parqueo_id)
+
+    # Registrar fecha de salida
+    parqueo.fecha_salida = timezone.now()
+
+    # Calcular tiempo y total
+    tiempo = parqueo.fecha_salida - parqueo.fecha_entrada
+    horas = math.ceil(tiempo.total_seconds() / 3600)
+    total = horas * parqueo.tarifa.monto
+    parqueo.total_pagado = total
+    parqueo.estado = 'finalizado'
+    parqueo.save()
+
+    # Registrar pago
+    Pago.objects.create(
+        parqueo=parqueo,
+        cliente=parqueo.vehiculo.cliente,
+        monto=total
+    )
+
+    # Liberar celda
+    celda = parqueo.celda
+    celda.estado = 'libre'
+    celda.save()
+
+    return JsonResponse({'success': True})

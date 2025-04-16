@@ -82,3 +82,48 @@
       });
     });
   });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.body.addEventListener("click", function (e) {
+      if (e.target.classList.contains("generar-pago-btn")) {
+        const parqueoId = e.target.dataset.parqueoId;
+  
+        fetch(`/parqueos/formulario-pago/${parqueoId}/`)
+          .then(res => res.text())
+          .then(html => {
+            document.getElementById("registrarPagoModalBody").innerHTML = html;
+  
+            const pagoModal = new bootstrap.Modal(document.getElementById("registrarPagoModal"));
+            pagoModal.show();
+  
+            const pagoForm = document.getElementById("formularioPago");
+  
+            if (pagoForm) {
+              pagoForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+  
+                fetch(`/pagos/crear/${parqueoId}/`, {
+                  method: "POST",
+                  body: formData,
+                  headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                  }
+                })
+                  .then(res => res.json())
+                  .then(data => {
+                    if (data.success) {
+                      pagoModal.hide();
+                      location.reload();  // Recarga para actualizar el estado de la celda
+                    } else {
+                      alert("Errores en el formulario");
+                      console.log(data.errors);
+                    }
+                  });
+              });
+            }
+          });
+      }
+    });
+  });
+  

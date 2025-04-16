@@ -1,3 +1,5 @@
+from django.utils import timezone
+import math
 from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from rest_framework import status
@@ -67,3 +69,17 @@ def crear_parqueo(request, celda_id):
             return JsonResponse({'success': True})
         else:
             return JsonResponse({'success': False, 'errors': form.errors})
+        
+@login_required
+def formulario_pago(request, parqueo_id):
+    parqueo = get_object_or_404(Parqueo, pk=parqueo_id, estado='activo')
+
+    # Calculamos tiempo y total como en la vista de crear
+    tiempo = timezone.now() - parqueo.fecha_entrada
+    horas = math.ceil(tiempo.total_seconds() / 3600)
+    monto = horas * parqueo.tarifa.monto
+
+    return render(request, 'pagos/formulario_pago.html', {
+        'parqueo': parqueo,
+        'monto': monto
+    })

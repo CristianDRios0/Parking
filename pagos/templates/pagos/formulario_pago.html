@@ -1,0 +1,8 @@
+<form method="post" id="formularioPago" action="{% url 'formulario_pago' parqueo_id=parqueo.id %}">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="monto">Monto a pagar</label>
+        <input type="text" class="form-control form_parqueo" name="monto" id="monto" value="{{ monto }}" readonly>
+    </div>
+    <button type="submit" class="btn btn-primary">Confirmar Pago</button>
+</form>

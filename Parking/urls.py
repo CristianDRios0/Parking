@@ -28,6 +28,7 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('celdas/', include('celdas.urls')),
     path('parqueos/', include('parqueos.urls')),
+    path('pagos/', include('pagos.urls')),
     path('api/celdas/', include('celdas.urls')),
     path('api/clientes/', include('clientes.urls')),
     path('api/tarifas/', include('tarifas.urls')),
