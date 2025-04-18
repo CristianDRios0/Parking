@@ -10,6 +10,7 @@ from celdas.models import Celda
 from parqueos.forms import ParqueoForm
 from .models import Parqueo
 from .serializers import ParqueoSerializer
+from django.views.decorators.cache import never_cache
 
 class ParqueoListCreateAPIView(APIView):
 
@@ -45,12 +46,14 @@ class ParqueoDetailAPIView(APIView):
         parqueo.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+@never_cache
 @login_required
 def formulario_parqueo(request, celda_id):
     celda = get_object_or_404(Celda, id=celda_id)
     form = ParqueoForm()
     return render(request, 'parqueos/formulario_parqueo.html', {'form': form, 'celda': celda})
 
+@never_cache
 @login_required
 def crear_parqueo(request, celda_id):
     celda = get_object_or_404(Celda, id=celda_id)
@@ -69,7 +72,8 @@ def crear_parqueo(request, celda_id):
             return JsonResponse({'success': True})
         else:
             return JsonResponse({'success': False, 'errors': form.errors})
-        
+
+@never_cache      
 @login_required
 def formulario_pago(request, parqueo_id):
     parqueo = get_object_or_404(Parqueo, pk=parqueo_id, estado='activo')

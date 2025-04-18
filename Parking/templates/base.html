@@ -20,10 +20,18 @@
             </header>
             <nav>
                 <ul>
-                    <li title="Home"><i class="bi bi-people-fill"></i><span class="link-text">Home</span></li>
+                    <li title="Registrar Vehículo" id="btnAbrirModalVehiculo"><i class="bi bi-car-front-fill"></i></i>
+                        <span class="link-text">
+                            <span class="menu-line">Agregar</span>
+                        </span>
+                    </li>
                     <li title="About"><i class="bi bi-plus-square-fill"></i><span class="link-text">About</span></li>
                     <li title="Services"><i class="bi bi-info-circle-fill"></i><span class="link-text">Services</span></li>
                     <li title="Contact"><i class="bi bi-telephone-fill"></i><span class="link-text">Contact</span></li>
+                    <li class="logout" id="logoutBtn" title="Cerrar sesión" style="cursor: pointer;">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span class="link-text">Logout</span>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -37,5 +45,21 @@
             </footer>
         </div>
     </div>
+
+    <!-- Modal para registrar vehículo -->
+    <div class="modal fade" id="modalVehiculo" tabindex="-1" aria-labelledby="modalVehiculoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalVehiculoLabel">Registrar Vehículo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body" id="modalVehiculoBody">
+                    
+                </div>
+            </div>
+        </div>
+    </div>  
+
 </body>
 </html>

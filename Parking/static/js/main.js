@@ -1,31 +1,4 @@
-/*document.addEventListener("DOMContentLoaded", function () {
-    const btnAbrirModal = document.getElementById("btnAbrirModalCelda");  // El botón debe tener este ID
-    const modalBody = document.getElementById("modal-body-content");
-
-    btnAbrirModal.addEventListener("click", function () {
-      fetch("/celdas/crear/")
-        .then(response => {
-          if (!response.ok) {
-            throw new Error("Error al cargar el formulario");
-          }
-          return response.text();
-        })
-        .then(html => {
-          console.log("Formulario recibido:");
-          console.log(html);
-          modalBody.innerHTML = html;
-
-          const modal = new bootstrap.Modal(document.getElementById("modalCrearCelda"));
-          modal.show();
-        })
-        .catch(error => {
-          console.error("Error:", error);
-          modalBody.innerHTML = "<p class='text-danger'>No se pudo cargar el formulario.</p>";
-        });
-    });
-  });*/
-
-  /*codigo para visualizar los detalles de la celda ocupada*/
+ /*codigo para visualizar los detalles de la celda ocupada*/
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".cell.ocupado").forEach(cell => {
       cell.addEventListener("click", () => {
@@ -83,6 +56,8 @@
     });
   });
 
+  /* JS para el comportamiento al crear el pago */
+
   document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("click", function (e) {
       if (e.target.classList.contains("generar-pago-btn")) {
@@ -126,4 +101,85 @@
       }
     });
   });
+
+  /* JS para manejar el comportamiento de la modal al crear vehiculo*/
   
+  document.addEventListener("DOMContentLoaded", () => {
+    const btnAbrirModal = document.getElementById("btnAbrirModalVehiculo");
+  
+    if (btnAbrirModal) {
+      btnAbrirModal.addEventListener("click", (e) => {
+        e.preventDefault();
+  
+        fetch("/vehiculos/formulario-vehiculo/")
+          .then(res => res.text())
+          .then(html => {
+            document.getElementById("modalVehiculoBody").innerHTML = html;
+  
+            const modal = new bootstrap.Modal(document.getElementById("modalVehiculo"));
+            modal.show();
+  
+            const form = document.getElementById("formularioVehiculo");
+  
+            if (form) {
+              form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+  
+                fetch("/vehiculos/crear/", {
+                  method: "POST",
+                  body: formData,
+                  headers: {
+                    "X-CSRFToken": formData.get("csrfmiddlewaretoken")
+                  }
+                })
+                .then(res => res.json())
+                .then(data => {
+                  if (data.success) {
+                    modal.hide();
+                    alert("Vehículo registrado correctamente");
+                  } else {
+                    alert("Errores en el formulario");
+                    console.log(data.errors);
+                  }
+                });
+              });
+            }
+          });
+      });
+    }
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', function() {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/logout/';
+
+    // CSRF token
+    const csrfToken = getCookie('csrftoken');
+    const csrfInput = document.createElement('input');
+    csrfInput.type = 'hidden';
+    csrfInput.name = 'csrfmiddlewaretoken';
+    csrfInput.value = csrfToken;
+    form.appendChild(csrfInput);
+
+    document.body.appendChild(form);
+    form.submit();
+});
+
+// Utilidad para obtener el CSRF token desde cookies
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // cookie formato: name=value
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}

@@ -7,6 +7,7 @@ from parqueos.models import Parqueo
 from .models import Celda
 from .serializers import CeldaSerializer
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
 
 class CeldaListCreateAPIView(APIView):
 
@@ -52,6 +53,7 @@ class CeldaDetailAPIView(APIView):
         celda.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+@never_cache
 @login_required 
 def celdas_view(request):
     estado = request.GET.get("estado")
@@ -65,6 +67,7 @@ def celdas_view(request):
 
     return render(request, 'celdas/listado_celdas.html', {'celdas': celdas, 'form': form})
 
+@never_cache
 @login_required   
 def crear_celda_view(request):
     if request.method == 'POST':
@@ -77,6 +80,7 @@ def crear_celda_view(request):
 
     return redirect('celdas_view')
 
+@never_cache
 @login_required
 def detalle_celda(request, celda_id):
     celda = get_object_or_404(Celda, pk=celda_id)

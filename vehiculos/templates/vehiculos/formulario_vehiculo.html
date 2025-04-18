@@ -1,0 +1,17 @@
+<form method="post" id="formularioVehiculo">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="placa">Placa:</label>
+        <input type="text" name="placa" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="cliente">Cliente (opcional):</label>
+        <select name="cliente" class="form-control">
+            <option value="">Sin cliente</option>
+            {% for cliente in clientes %}
+                <option value="{{ cliente.id }}">{{ cliente.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Registrar</button>
+</form>

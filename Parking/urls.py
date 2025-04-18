@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
+from django.contrib.auth.views import LogoutView
 
 def redirect_to_admin(request):
     return redirect('/admin/')
@@ -29,10 +30,12 @@ urlpatterns = [
     path('celdas/', include('celdas.urls')),
     path('parqueos/', include('parqueos.urls')),
     path('pagos/', include('pagos.urls')),
+    path('vehiculos/', include('vehiculos.urls')),
     path('api/celdas/', include('celdas.urls')),
     path('api/clientes/', include('clientes.urls')),
     path('api/tarifas/', include('tarifas.urls')),
     path('api/vehiculos/', include('vehiculos.urls')),
     path('api/parqueos/', include('parqueos.urls')),
     path('api/pagos/', include('pagos.urls')),
+    path('logout/', LogoutView.as_view(next_page='custom_login'), name='logout'),
 ]

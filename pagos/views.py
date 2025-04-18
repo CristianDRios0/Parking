@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-
+from django.views.decorators.cache import never_cache
 from parqueos.models import Parqueo
 from .models import Pago
 from .serializers import PagoSerializer
@@ -49,6 +49,7 @@ class PagoDetailAPIView(APIView):
         pago.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+@never_cache
 @require_POST
 def crear_pago(request, parqueo_id):
     parqueo = get_object_or_404(Parqueo, id=parqueo_id)
