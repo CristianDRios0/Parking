@@ -38,6 +38,7 @@
 .fuente_textos_titulos{
     font-family: "Bebas Neue", sans-serif;
     font-size: 40px;
+    text-align: center;
 }
 
 .fuente_textos{
@@ -45,11 +46,11 @@
     font-size: 20px;
 }
 
-form input{
-    height: 20px;
-    width: 70%;
+input{
+    height: 40px;
+    width: 80%;
     border-radius: 40px;
-    padding: 5px;
+    padding: 10px;
     margin: 0px 5px;
     text-align: center;
     font-family: "Josefin Sans", sans-serif;
@@ -62,6 +63,7 @@ form input{
     border-radius: 20px;
     background: linear-gradient(to right, #ff00ff, #9900ff);
     color: white;
+    cursor: pointer;
 }
 
 *{
@@ -73,6 +75,7 @@ form input{
 body, html{
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
 }
 
 .page-layout{
@@ -286,10 +289,12 @@ nav i {
 }
 
 .form-control {
-    background-color: rgb(133, 146, 158);
+    background-color: rgb(77, 85, 92);
     color: rgb(51, 187, 255);
     border: 1px solid rgb(51, 187, 255);
     font-family: "Josefin Sans", sans-serif;
+    box-sizing: border-box;
+    height: 35px;
 }
 
 .form-control::placeholder {
@@ -297,11 +302,11 @@ nav i {
 }
 
 .form-control:focus {
-    background-color: rgb(108, 122, 137);
+    background-color: rgb(96, 108, 121);
     border-color: rgb(0, 230, 255);
     box-shadow: 0 0 5px rgba(0, 230, 255, 0.5);
     outline: none;
-    color: rgb(0, 230, 255);
+    color: white;
 }
 
 label {
